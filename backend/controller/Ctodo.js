@@ -13,7 +13,7 @@ exports.postTodo = async (req, res) => {
         res.json(newTodo);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.json({ message: "Internal Server Error" });
     }
 };
 
@@ -27,6 +27,7 @@ exports.getTodos = async (req, res) => {
     }
 };
 
+// 특정 ID todo
 exports.getTodo = async (req, res) => {
     try {
         const { id } = req.params;
@@ -37,10 +38,11 @@ exports.getTodo = async (req, res) => {
         res.json(todo);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.json({ message: "Todo not found" });
     }
 };
 
+// 특정 ID todo 수정
 exports.patchTodo = async (req, res) => {
     try {
         const { id } = req.params;
@@ -51,23 +53,23 @@ exports.patchTodo = async (req, res) => {
         res.json(updatedTodo);
     } catch (err) {
         console.error(err);
-        res.status(500).send("Internal Server Error");
+        res.json({ message: "Todo not found" });
     }
 };
 
 exports.deleteTodo = async (req, res) => {
     try {
         const { id } = req.params;
-        const isDeleted = await Todo.destroy({
+        const isDeletedTodo = await Todo.destroy({
             where: { id },
         });
         if (isDeleted) {
-            return res.send(true);
+            return res.json({ message: "Todo deleted successfully", isDeleted: { id } });
         } else {
             return res.send(false);
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.json({ message: "Todo not found" });
     }
 };
