@@ -4,58 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./public/index.css" />
-        <!-- <script defer src="./public/index.js"></script> -->
+        <script defer src="./public/index.js"></script>
         <title>박은경</title>
-        <style>
-            @media ((max-width: 539px)) {
-                /* 1단으로 Todo 목록*/
-                /* 헤더의 로고 이미지와 제목(Todo List)이 가로에서 세로 방향으로 배치가 변경 */
-                header {
-                    text-align: center;
-                }
-            }
-
-            @media screen and (min-width: 520px) and (max-width: 959px) {
-                /* 2단으로 Todo 목록*/
-                header {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                ul {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-                li {
-                    width: 50%;
-                    word-break: break-all;
-                }
-            }
-            @media ((min-width: 960px)) {
-                /* 4단으로 Todo 목록 */
-                /* 헤더, 입력창, Todo 목록을 포함하는 요소의 최대 너비는 800px */
-                body {
-                    max-width: 800px;
-                }
-                header {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                ul {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-                li {
-                    width: 25%;
-                    word-break: break-all;
-                }
-            }
-
-            li {
-                list-style: none;
-            }
-        </style>
     </head>
     <body>
         <header>
@@ -84,42 +34,4 @@
             </ul>
         </div>
     </body>
-    <script>
-        function addTodo(elem) {
-            const inputBoxElem = document.querySelector("#input-box");
-            const inputBoxValue = inputBoxElem.value;
-            if (inputBoxValue.trim()) {
-                document.querySelector(".to-do-list").innerHTML += `
-          <li>
-          <input type="checkbox" class="checkbox" onclick="onClickCheckbox(this)" />
-          <span>${inputBoxValue}</span>
-          <input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
-        </li>
-          `;
-                inputBoxElem.value = "";
-            }
-        }
-
-        function enterKey(e) {
-            if (e.keyCode == 13) {
-                addTodo();
-            }
-        }
-
-        function deleteTodo(deleteElem) {
-            deleteElem.parentElement.remove();
-        }
-
-        function onClickCheckbox(checkboxElem) {
-            const liElem = checkboxElem.parentElement;
-            const spanElem = liElem.querySelector("span");
-            if (checkboxElem.checked) {
-                spanElem.innerHTML = `<s>${spanElem.innerText}</s>`;
-                spanElem.style.color = "gray";
-            } else {
-                spanElem.innerHTML = `${spanElem.innerText}`;
-                spanElem.style.color = "black";
-            }
-        }
-    </script>
 </html>

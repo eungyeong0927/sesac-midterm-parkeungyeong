@@ -3,18 +3,18 @@ function addTodo(elem) {
     const inputBoxValue = inputBoxElem.value;
     if (inputBoxValue.trim()) {
         document.querySelector(".to-do-list").innerHTML += `
-<li>
-<input type="checkbox" class="checkbox" onclick="onClickCheckbox(this)" />
-<span>${inputBoxValue}</span>
-<input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
+  <li>
+  <input type="checkbox" class="checkbox" onclick="onClickCheckbox(this)" />
+  <span>${inputBoxValue}</span>
+  <input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
 </li>
-`;
+  `;
         inputBoxElem.value = "";
     }
 }
 
-function enterKey() {
-    if (window.event.keyCode == 13) {
+function enterKey(e) {
+    if (e.keyCode == 13) {
         addTodo();
     }
 }
