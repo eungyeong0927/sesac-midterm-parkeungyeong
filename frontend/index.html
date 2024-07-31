@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./public/index.css" />
+        <title>박은경</title>
+    </head>
+    <body>
+        <header><img src="./public/codingon.png" alt="코딩온" width="100px" />Todo List</header>
+        <div class="input-wrapper">
+            <input type="text" id="input-box" placeholder="입력하세요" />
+            <input type="button" id="input-button" value="작성" onclick="addTodo(this)" />
+            <ul class="to-do-list">
+                <li>
+                    <input type="checkbox" class="checkbox" onclick="onClickCheckbox(this)" />
+                    <span>first item</span>
+                    <input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox" onclick="onClickCheckbox(this)" />
+                    <span> item</span>
+                    <input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        function addTodo(elem) {
+            const inputBoxElem = document.querySelector("#input-box");
+            const inputBoxValue = inputBoxElem.value;
+            document.querySelector(".to-do-list").innerHTML += `
+  <li>
+  <input
+    type="checkbox"
+    class="checkbox"
+   
+  />
+  <span>${inputBoxValue}</span>
+  <input type="button" id="delete-button" value="x" onclick="deleteTodo(this)" />
+</li>
+  `;
+            inputBoxElem.value = "";
+        }
+
+        function enterKey() {
+            if (window.event.keyCode == 13) {
+                addTodo();
+            }
+        }
+
+        function deleteTodo(deleteElem) {
+            deleteElem.parentElement.remove();
+        }
+
+        function onClickCheckbox(checkboxElem) {
+            const liElem = checkboxElem.parentElement;
+            const spanElem = liElem.querySelector("span");
+            if (checkboxElem.checked) {
+                spanElem.innerHTML = `<s>${spanElem.innerText}</s>`;
+            } else {
+                spanElem.innerHTML = `${spanElem.innerText}`;
+            }
+        }
+    </script>
+</html>
