@@ -6,11 +6,11 @@ const db = {}; // 빈 객체
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config); // sequelize 객체
 
-const TodoModel = require("./Todo")(sequelize, Sequelize);
+const todo = require("./Todo")(sequelize, Sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.todo = TodoModel;
+db.todo = todo;
 
 module.exports = db;
